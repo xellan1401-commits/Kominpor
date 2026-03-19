@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Halaman Web Pertama Saya</title>
+    <style>
+        /* Ini adalah CSS untuk mempercantik halaman */
+        body { font-family: sans-serif; text-align: center; background-color: #f4f4f4; padding: 50px; }
+        .kartu { background: white; padding: 20px; border-radius: 15px; shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
+        button { padding: 10px 20px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div class="kartu">
+        <h1>Halo Dunia! 🚀</h1>
+        <p>Ini adalah halaman web yang saya buat dari teks editor.</p>
+        <button onclick="sapaan()">Klik Saya!</button>
+        <p id="pesan"></p>
+    </div>
+
+    <script>
+        /* Ini adalah JavaScript untuk interaksi */
+        function sapaan() {
+            document.getElementById("pesan").innerHTML = "Selamat! Kode Anda berfungsi! 🎉";
+        }
+    </script>
+
+</body>
+</html>
