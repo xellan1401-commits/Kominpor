@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANA Kaget - Spesial Ramadhan & Lebaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #118EEA; /* DANA Blue */
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .dana-gradient {
+            background: linear-gradient(180deg, #118EEA 0%, #0D7CD1 100%);
+        }
+
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+
+        .floating-star {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        #loader {
+            display: none;
+        }
+
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Konten Utama -->
+    <div id="main-card" class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate__animated animate__fadeIn">
+        <!-- Header Lebaran -->
+        <div class="dana-gradient p-6 text-white text-center relative">
+            <div class="text-sm opacity-90 mb-1">PROGRAM BERBAGI</div>
+            <h1 class="text-2xl font-bold tracking-tight">DANA Kaget Lebaran</h1>
+            <p class="text-xs opacity-75 mt-2">Dapatkan saldo gratis hingga Rp500.000!</p>
+            
+            <!-- Dekorasi Ikon -->
+            <div class="absolute top-2 left-4 text-2xl opacity-30">🌙</div>
+            <div class="absolute top-2 right-4 text-2xl opacity-30">⭐</div>
+        </div>
+
+        <div class="p-8 text-center">
+            <!-- Amplop -->
+            <div id="envelope" class="envelope-container mb-8" onclick="processClaim()">
+                <div class="relative inline-block">
+                    <svg width="180" height="180" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="60" width="160" height="110" rx="12" fill="#FF4B4B" />
+                        <path d="M20 72L100 120L180 72V60C180 53.3726 174.627 48 168 48H32C25.3726 48 20 53.3726 20 60V72Z" fill="#D32F2F" />
+                        <circle cx="100" cy="100" r="30" fill="#FFD700" stroke="white" stroke-width="4" />
+                        <text x="100" y="108" font-size="24" text-anchor="middle" fill="#D32F2F" font-weight="bold">🧧</text>
+                    </svg>
+                    <div class="absolute -top-4 -right-4 animate-bounce">
+                        <span class="bg-yellow-400 text-red-700 text-[10px] font-bold px-2 py-1 rounded-full shadow-md">TEKAN DISINI!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="instruction">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">Selamat! Anda Terpilih</h2>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                    Klik amplop merah di atas untuk membuka saldo DANA Kaget spesial Hari Raya Idul Fitri untuk Anda.
+                </p>
+            </div>
+
+            <!-- Loader (Hidden by default) -->
+            <div id="loader" class="py-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+                    <p class="text-blue-600 font-semibold animate-pulse">Memverifikasi Akun DANA...</p>
+                    <p class="text-xs text-gray-400 mt-2">Mohon tunggu sebentar</p>
+                </div>
+            </div>
+
+            <!-- Pesan Sukses Palsu -->
+            <div id="success" class="hidden py-4">
+                <div class="text-green-500 text-5xl mb-4 animate__animated animate__bounceIn">✓</div>
+                <h3 class="text-lg font-bold text-gray-800">Saldo Berhasil Diamankan!</h3>
+                <p class="text-sm text-gray-500 mb-6">Satu langkah terakhir untuk klaim ke dompet digital Anda.</p>
+                <button onclick="redirectToLink()" class="w-full bg-[#118EEA] hover:bg-[#0D7CD1] text-white font-bold py-4 rounded-xl shadow-lg transition duration-200">
+                    KLAIM SALDO SEKARANG
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer Keamanan -->
+        <div class="bg-gray-50 p-4 border-t border-gray-100 flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9L9.03 9.125a2.41 2.41 0 011.939 0L17.833 4.9A1.745 1.745 0 0015.612 3H4.388c-.868 0-1.61.643-1.745 1.9zm16.03 3.61c.148.113.237.283.237.472v5.268c0 1.242-1.008 2.25-2.25 2.25H3.817c-1.242 0-2.25-1.008-2.25-2.25V8.982c0-.189.09-.359.237-.472l6.398 3.937a4.41 4.41 0 003.593 0l6.398-3.937z" clip-rule="evenodd"></path></svg>
+            <span class="text-[10px] text-gray-400 font-medium uppercase tracking-widest">Aman & Terverifikasi oleh DANA</span>
+        </div>
+    </div>
+
+    <script>
+        // MASUKKAN LINK TUJUAN ANDA DI SINI (Contoh: Link WA, YouTube, atau Rickroll)
+        const YOUR_LINK = "https://share.google/bbCEr622dZY3U9rRi"; 
+
+        function processClaim() {
+            const envelope = document.getElementById('envelope');
+            const instruction = document.getElementById('instruction');
+            const loader = document.getElementById('loader');
+            const success = document.getElementById('success');
+
+            // Sembunyikan instruksi & amplop
+            envelope.classList.add('animate__animated', 'animate__zoomOut');
+            instruction.classList.add('hidden');
+            
+            setTimeout(() => {
+                envelope.classList.add('hidden');
+                loader.style.display = 'block';
+
+                // Simulasi loading 2 detik
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    success.classList.remove('hidden');
+                }, 2000);
+            }, 500);
+        }
+
+        function redirectToLink() {
+            // Animasi tombol saat diklik
+            const btn = event.target;
+            btn.innerHTML = "Menghubungkan...";
+            btn.style.opacity = "0.7";
+            
+            setTimeout(() => {
+                window.location.href = YOUR_LINK;
+            }, 800);
+        }
+    </script>
+</body>
+</html>
+
